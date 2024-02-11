@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'your_domain_name.com',  # Add your domain name here
+    'transcendence-beige.vercel.app',  # Add your domain name here
     'four2trans-backend.onrender.com',  # Add Render domain here
 ]
 
