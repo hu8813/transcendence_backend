@@ -25,7 +25,13 @@ SECRET_KEY = 'django-insecure-iu856&3h_!^zjq^^y&r*tb0d=$$ws8xx1@qyp-k=0#-(pz8c@e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'your_domain_name.com',  # Add your domain name here
+    'four2trans-backend.onrender.com',  # Add Render domain here
+]
+
 
 
 # Application definition
