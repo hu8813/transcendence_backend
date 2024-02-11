@@ -19,8 +19,10 @@ from django.urls import path
 from myapp import views
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login_view, name='login'),
+    path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
 
 ]
