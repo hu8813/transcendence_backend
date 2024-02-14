@@ -14,6 +14,7 @@ def get_csrf_token(request):
     # Return the CSRF token in a JSON response
     return JsonResponse({'csrfToken': csrf_token})
 
+@csrf_exempt
 def register(request):
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
@@ -26,6 +27,7 @@ def register(request):
         form = UserRegistrationForm()
     return render(request, 'registration/register.html', {'form': form})
 
+@csrf_exempt
 def login_view(request):
     # Handle login form submission and authentication logic here
     if request.method == 'POST':
