@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from .forms import UserRegistrationForm
+from django.contrib.auth.models import User
 
 @csrf_exempt
 def get_csrf_token(request):
@@ -11,6 +13,18 @@ def get_csrf_token(request):
 
     # Return the CSRF token in a JSON response
     return JsonResponse({'csrfToken': csrf_token})
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])  # Hash password
+            user.save()
+            return redirect('login')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'registration/register.html', {'form': form})
 
 def login_view(request):
     # Handle login form submission and authentication logic here
