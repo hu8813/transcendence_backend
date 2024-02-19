@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 
 ]
 
@@ -143,6 +145,7 @@ USE_TZ = True
 
 CSRF_TRUSTED_ORIGINS = ['https://transcendence-beige.vercel.app','https://zc5vlf-3000.csb.app','https://y494mt-3000.csb.app']
 
+CORS_ALLOWED_ORIGINS = ['https://transcendence-beige.vercel.app','https://zc5vlf-3000.csb.app','https://y494mt-3000.csb.app']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
