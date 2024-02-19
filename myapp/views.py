@@ -7,6 +7,10 @@ from .forms import UserRegistrationForm
 from django.contrib.auth.models import User
 
 @csrf_exempt
+def ping(request):
+    return JsonResponse({'message': 'Server is awake!'})
+    
+@csrf_exempt
 def get_csrf_token(request):
     # Get the CSRF token from the request's CSRF middleware
     csrf_token = request.COOKIES.get('csrftoken', '')

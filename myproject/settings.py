@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [
     'transcendence-beige.vercel.app',  # Add your domain name here
     'four2trans-backend.onrender.com',  # Add Render domain here
     'zc5vlf-3000.csb.app',
+    'y494mt-3000.csb.app',
 ]
 
 
@@ -140,7 +141,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ['https://transcendence-beige.vercel.app','https://zc5vlf-3000.csb.app']
+CSRF_TRUSTED_ORIGINS = ['https://transcendence-beige.vercel.app','https://zc5vlf-3000.csb.app','y494mt-3000.csb.app']
 
 
 # Static files (CSS, JavaScript, Images)
