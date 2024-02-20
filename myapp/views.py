@@ -18,7 +18,6 @@ def get_csrf_token(request):
     # Return the CSRF token in a JSON response
     return JsonResponse({'csrfToken': csrf_token})
 
-
 @csrf_exempt
 def register(request):
     if request.method == 'POST':
@@ -31,10 +30,11 @@ def register(request):
         else:
             # Return form errors if the form is invalid
             errors = form.errors.as_text()
-            return HttpResponse(errors, status=400)  # Bad Request status code
+            return HttpResponse(f"Error occurred: {errors}", status=400)  # Bad Request status code
     else:
         form = UserRegistrationForm()  # Move form initialization here
         return render(request, 'registration/register.html', {'form': form})  # Render the registration form template
+
 
 @csrf_exempt
 def login_view(request):
