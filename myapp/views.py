@@ -27,6 +27,10 @@ def register(request):
             user.set_password(form.cleaned_data['password'])  # Hash password
             user.save()
             return redirect('login')
+        else:
+            # Return form errors if the form is invalid
+            errors = form.errors.as_text()
+            return HttpResponse(errors, status=400)  # Bad Request status code
     else:
         form = UserRegistrationForm()
     return HttpResponse('Registration successful')
