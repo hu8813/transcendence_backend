@@ -29,7 +29,7 @@ def register(request):
             return redirect('login')
     else:
         form = UserRegistrationForm()
-    return HttpResponse('Login successful')
+    return HttpResponse('Registration successful')
 
 @csrf_exempt
 def login_view(request):
