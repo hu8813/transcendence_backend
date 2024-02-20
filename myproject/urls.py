@@ -25,6 +25,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('ping/', views.login_view, name='ping'),
     path('register/', views.register, name='register'),
+    path('leaderboard/', views.leaderboard, name='leaderboard'),
     path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
 
 ]
