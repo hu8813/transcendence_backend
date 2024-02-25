@@ -10,7 +10,6 @@ from django.contrib.auth.models import User
 def ping(request):
     return JsonResponse({'message': 'Server is awake!'})
 
-"""
 @csrf_exempt
 def leaderboard(request):
     # Assuming User model has a score field
@@ -26,6 +25,7 @@ def leaderboard(request):
 
     return render(request, 'leaderboard.html', {'leaderboard_data': leaderboard_data})
 
+"""
 
 @csrf_exempt
 def get_csrf_token(request):
