@@ -12,10 +12,11 @@ def ping(request):
 
 @csrf_exempt
 def leaderboard(request):
-    # Assuming User model has a score field
-    leaderboard_users = User.objects.order_by('-score')[:10]  # Get top 10 users
-    leaderboard_data = [{'username': user.username, 'score': user.score} for user in leaderboard_users]
-    return JsonResponse(leaderboard_data, safe=False)
+    # Assuming leaderboard_data is retrieved from the database or calculated elsewhere
+    leaderboard_data = [{'username': 'user1', 'score': 100}, {'username': 'user2', 'score': 90}]  # Example data
+
+    return render(request, 'leaderboard.html', {'leaderboard_data': leaderboard_data})
+
 
 @csrf_exempt
 def get_csrf_token(request):
