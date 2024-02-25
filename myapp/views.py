@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from .forms import UserRegistrationForm
 from django.contrib.auth.models import User
+from django.shortcuts import render
 
 @csrf_exempt
 def ping(request):
@@ -15,16 +16,24 @@ def leaderboard(request):
     leaderboard_users = User.objects.order_by('-date_joined')[:10]  # Order by date joined
     leaderboard_data = [{'username': user.username, 'date_joined': user.date_joined} for user in leaderboard_users]
     return JsonResponse(leaderboard_data, safe=False)
-"""
 
 @csrf_exempt
-def leaderboard(request):
-    # Assuming leaderboard_data is retrieved from the database or calculated elsewhere
-    leaderboard_data = [{'username': 'user1', 'score': 100}, {'username': 'user2', 'score': 90}]  # Example data
+def fetch_messages(request):
+    # Logic to fetch old chat messages
+    messages = [...]  # Fetch messages from database
+    return JsonResponse(messages, safe=False)
 
-    return render(request, 'leaderboard.html', {'leaderboard_data': leaderboard_data})
+@csrf_exempt
+def send_message(request):
+    # Logic to save new chat message
+    # Extract message data from request
+    message_data = json.loads(request.body)
+    message = message_data['message']
 
-"""
+    # Save message to database
+    # ...
+
+    return JsonResponse({'status': 'success'})
 
 @csrf_exempt
 def get_csrf_token(request):

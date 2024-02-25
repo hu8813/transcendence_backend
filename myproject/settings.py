@@ -38,7 +38,8 @@ ALLOWED_HOSTS = [
 ]
 
 
-
+SOCKETIO_HOST = "0.0.0.0"
+SOCKETIO_PORT = 8001
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'socketio',
 ]
 
 MIDDLEWARE = [
