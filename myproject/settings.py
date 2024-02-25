@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [
     'four2trans-backend.onrender.com',  # Add Render domain here
     'zc5vlf-3000.csb.app',
     'mwlvdq-3000.csb.app',
-    'transcendence-git-draft-exciting-yalow-hubble42.vercel.app',
+    
 ]
 
 
