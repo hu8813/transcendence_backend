@@ -10,6 +10,15 @@ from django.contrib.auth.models import User
 def ping(request):
     return JsonResponse({'message': 'Server is awake!'})
 
+"""
+@csrf_exempt
+def leaderboard(request):
+    # Assuming User model has a score field
+    leaderboard_users = User.objects.order_by('-score')[:10]  # Get top 10 users
+    leaderboard_data = [{'username': user.username, 'score': user.score} for user in leaderboard_users]
+    return JsonResponse(leaderboard_data, safe=False)
+"""
+
 @csrf_exempt
 def leaderboard(request):
     # Assuming leaderboard_data is retrieved from the database or calculated elsewhere
