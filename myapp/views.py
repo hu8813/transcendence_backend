@@ -12,9 +12,8 @@ def ping(request):
 
 @csrf_exempt
 def leaderboard(request):
-    # Assuming User model has a score field
-    leaderboard_users = User.objects.order_by('-score')[:10]  # Get top 10 users
-    leaderboard_data = [{'username': user.username, 'score': user.score} for user in leaderboard_users]
+    leaderboard_users = User.objects.order_by('-date_joined')[:10]  # Order by date joined
+    leaderboard_data = [{'username': user.username, 'date_joined': user.date_joined} for user in leaderboard_users]
     return JsonResponse(leaderboard_data, safe=False)
 """
 
