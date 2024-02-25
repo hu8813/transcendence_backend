@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [
     'four2trans-backend.onrender.com',  # Add Render domain here
     'zc5vlf-3000.csb.app',
     'mwlvdq-3000.csb.app',
-    
+    'transcendence-git-draft-exciting-yalow-hubble42.vercel.app',
 ]
 
 
@@ -146,7 +146,7 @@ USE_TZ = True
 
 CSRF_TRUSTED_ORIGINS = ['https://transcendence-beige.vercel.app','https://transcendence-git-draft-exciting-yalow-hubble42.vercel.app/','https://mwlvdq-3000.csb.app']
 
-CORS_ALLOWED_ORIGINS = ['https://transcendence-beige.vercel.app','https://transcendence-git-draft-exciting-yalow-hubble42.vercel.app/','https://mwlvdq-3000.csb.app']
+CORS_ALLOWED_ORIGINS = ['https://transcendence-beige.vercel.app','https://mwlvdq-3000.csb.app']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
