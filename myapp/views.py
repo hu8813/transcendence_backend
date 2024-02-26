@@ -6,6 +6,26 @@ from django.http import JsonResponse
 from .forms import UserRegistrationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render
+from django.core.serializers import serialize
+
+@csrf_exempt
+def get_score(request):
+    # Retrieve user info from the database
+    users = User.objects.all()
+    
+    # Serialize user info
+    user_data = serialize('json', users)
+    
+    # Example score
+    score = 100  
+    
+    # Return user info along with score
+    response_data = {
+        'score': score,
+        'users': user_data
+    }
+    
+    return JsonResponse(response_data)
 
 @csrf_exempt
 def ping(request):
