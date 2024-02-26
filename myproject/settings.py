@@ -147,9 +147,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ['https://transcendence-beige.vercel.app','y494mt-3000.csb.app','https://transcendence-git-draft-exciting-yalow-hubble42.vercel.app/','https://mwlvdq-3000.csb.app']
+CSRF_TRUSTED_ORIGINS = ['https://transcendence-beige.vercel.app','https://y494mt-3000.csb.app','https://transcendence-git-draft-exciting-yalow-hubble42.vercel.app/','https://mwlvdq-3000.csb.app']
 
-CORS_ALLOWED_ORIGINS = ['https://transcendence-beige.vercel.app','y494mt-3000.csb.app','https://mwlvdq-3000.csb.app']
+CORS_ALLOWED_ORIGINS = ['https://transcendence-beige.vercel.app','https://y494mt-3000.csb.app','https://mwlvdq-3000.csb.app']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
