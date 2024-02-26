@@ -149,9 +149,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ['https://transcendence-beige.vercel.app','https://y494mt-3000.csb.app','https://transcendence-git-draft-exciting-yalow-hubble42.vercel.app/','https://mwlvdq-3000.csb.app','8ff524ec-5dfb-4374-9125-a53385e1cc63-00-14kx31mg03i0t.spock.replit.dev','transcendence-bynd-asb2ihs6--3000--6f234770.local-credentialless.webcontainer.io']
+CSRF_TRUSTED_ORIGINS = ['localhost','https://transcendence-beige.vercel.app','https://y494mt-3000.csb.app','https://transcendence-git-draft-exciting-yalow-hubble42.vercel.app/','https://mwlvdq-3000.csb.app','8ff524ec-5dfb-4374-9125-a53385e1cc63-00-14kx31mg03i0t.spock.replit.dev','transcendence-bynd-asb2ihs6--3000--6f234770.local-credentialless.webcontainer.io']
 
-CORS_ALLOWED_ORIGINS = ['https://transcendence-beige.vercel.app','https://y494mt-3000.csb.app','https://mwlvdq-3000.csb.app','8ff524ec-5dfb-4374-9125-a53385e1cc63-00-14kx31mg03i0t.spock.replit.dev','transcendence-bynd-asb2ihs6--3000--6f234770.local-credentialless.webcontainer.io']
+CORS_ALLOWED_ORIGINS = ['localhost','https://transcendence-beige.vercel.app','https://y494mt-3000.csb.app','https://mwlvdq-3000.csb.app','8ff524ec-5dfb-4374-9125-a53385e1cc63-00-14kx31mg03i0t.spock.replit.dev','transcendence-bynd-asb2ihs6--3000--6f234770.local-credentialless.webcontainer.io']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
