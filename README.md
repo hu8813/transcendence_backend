@@ -1,31 +1,24 @@
-# transcendence
+# Transcendence
 
-## Work in Process..
+## Work in Progress..
 
-# Frontend: React
-https://transcendence-beige.vercel.app/
+### Frontend: React
+The frontend is built using React and can be accessed at [Transcendence Frontend](https://transcendence-beige.vercel.app/).
 
-# Backend: Django
-https://github.com/hu8813/transcendence_backend
+### Backend: Django
+The backend is implemented in Django. You can find the code at [Transcendence Backend](https://github.com/hu8813/transcendence_backend).
 
-# Saving Leaderboard on Blockchain
-Sepolia Testnet on Ethereum 
+### Saving Leaderboard on Blockchain
+Leaderboard data is saved on the Sepolia Testnet on Ethereum. Contracts are created via [Remix Ethereum](https://remix.ethereum.org/) using the Sepolia fork.
 
-Contract created via: https://remix.ethereum.org/  
-Env: Remix VM - Sepolia fork
+### Sample Environment Variables for Saving Passwords:
+To securely save passwords, follow these steps:
 
+1. Save the following environment variables in either `~/.bashrc` or `~/.zshrc`:
 
-# Sample Environment Variables for saving Passwords:
-``
-save following environment Variable in ~/.bashrc or ~/.zshrc 
-
+```bash
 export DB_HOST=either-localhost-or-url-at.render.com
-
 export DB_NAME=dbname
-
 export DB_USER=username
-
 export DB_PASSWORD=dbpassword
-
-export DJANGO_SECRET_KEY="your-django-secret-here"
-``
+export DJANGO_SECRET_KEY="your-django-secret-here"```
