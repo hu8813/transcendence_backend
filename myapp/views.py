@@ -11,6 +11,17 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 @csrf_exempt
+def get_email(request):
+    # Assuming the user's email is stored in the user's profile or similar
+    # You may need to adjust this to fit your data model
+    user = request.user  # Assuming you're using Django's authentication system
+    if user.is_authenticated:
+        email = user.email
+        return JsonResponse({'email': email})
+    else:
+        return JsonResponse({'error': 'User is not authenticated'}, status=401)
+
+@csrf_exempt
 @api_view(['POST'])
 def upload_avatar(request):
     if request.method == 'POST' and request.FILES['avatar']:
@@ -24,7 +35,6 @@ def upload_avatar(request):
         return Response({"message": "Avatar uploaded successfully."})
     else:
         return Response({"message": "No avatar file provided."}, status=status.HTTP_400_BAD_REQUEST)
-
 
 @csrf_exempt
 def get_score(request):
