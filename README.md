@@ -21,4 +21,5 @@ export DB_HOST=either-localhost-or-url-at.render.com
 export DB_NAME=dbname
 export DB_USER=username
 export DB_PASSWORD=dbpassword
-export DJANGO_SECRET_KEY="your-django-secret-here"```
+export DJANGO_SECRET_KEY="your-django-secret-here"
+```
