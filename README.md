@@ -3,10 +3,10 @@
 ## Work in Progress..
 
 ### Frontend: React
-The frontend is built using React and can be accessed at [Transcendence Frontend](https://transcendence-beige.vercel.app/).
+The frontend is built using React and can be accessed at [Transcendence Frontend](https://transcendence-beige.vercel.app/). You can deploy the frontend on Vercel.
 
 ### Backend: Django
-The backend is implemented in Django. You can find the code at [Transcendence Backend](https://github.com/hu8813/transcendence_backend).
+The backend is implemented in Django. You can find the code at [Transcendence Backend](https://github.com/hu8813/transcendence_backend). Both the backend and PostgreSQL database can be deployed on Render.com.
 
 ### Saving Leaderboard on Blockchain
 Leaderboard data is saved on the Sepolia Testnet on Ethereum. Contracts are created via [Remix Ethereum](https://remix.ethereum.org/) using the Sepolia fork.
