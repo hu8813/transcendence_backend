@@ -30,5 +30,6 @@ urlpatterns = [
     path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
     path('api/fetch-messages/', views.fetch_messages, name='fetch_messages'),
     path('api/send-message/', views.send_message, name='send_message'),
+    path('upload-avatar/', views.upload_avatar, name='upload_avatar'),
     #path("socket.io/", socketio_views.SocketIOView.as_view(), name="socketio"),
 ]

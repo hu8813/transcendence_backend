@@ -7,6 +7,24 @@ from .forms import UserRegistrationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.core.serializers import serialize
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
+@csrf_exempt
+@api_view(['POST'])
+def upload_avatar(request):
+    if request.method == 'POST' and request.FILES['avatar']:
+        avatar_file = request.FILES['avatar']
+        user_profile = UserProfile.objects.get_or_create(user=request.user)  # Assuming you have a user associated with the profile
+        
+        # Save the avatar file to a desired location
+        user_profile.avatar = avatar_file
+        user_profile.save()
+
+        return Response({"message": "Avatar uploaded successfully."})
+    else:
+        return Response({"message": "No avatar file provided."}, status=status.HTTP_400_BAD_REQUEST)
+
 
 @csrf_exempt
 def get_score(request):
