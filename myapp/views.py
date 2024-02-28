@@ -21,7 +21,6 @@ def get_email(request):
     else:
         return JsonResponse({'error': 'User is not authenticated'}, status=401)
 
-
 @csrf_exempt
 def get_nickname(request):
     user = request.user
