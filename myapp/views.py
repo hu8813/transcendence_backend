@@ -21,7 +21,17 @@ def get_email(request):
     else:
         return JsonResponse({'error': 'User is not authenticated'}, status=401)
 
+
 @csrf_exempt
+def get_nickname(request):
+    user = request.user
+    if user.is_authenticated:
+        nickname = user.nickname  # Assuming your user model has a field named 'nickname'
+        return JsonResponse({'nickname': nickname})
+    else:
+        return JsonResponse({'error': 'User is not authenticated'}, status=401)
+
+@csrf_exempt 
 @api_view(['POST'])
 def upload_avatar(request):
     if request.method == 'POST' and request.FILES['avatar']:

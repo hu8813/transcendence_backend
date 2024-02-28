@@ -32,5 +32,6 @@ urlpatterns = [
     path('api/send-message/', views.send_message, name='send_message'),
     path('upload-avatar/', views.upload_avatar, name='upload_avatar'),
     path('get-email/', views.upload_avatar, name='get_email'),
+    path('get-nickname/', views.get_nickname, name='get_nickname'),
     #path("socket.io/", socketio_views.SocketIOView.as_view(), name="socketio"),
 ]
