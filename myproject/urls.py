@@ -27,6 +27,7 @@ urlpatterns = [
     path('ping/', views.login_view, name='ping'),
     path('register/', views.register, name='register'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
+    path('tournaments/', views.get_tournament_data, name='tournaments'),
     path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
     path('api/fetch-messages/', views.fetch_messages, name='fetch_messages'),
     path('api/send-message/', views.send_message, name='send_message'),
