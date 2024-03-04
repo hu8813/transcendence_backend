@@ -9,8 +9,8 @@ from django.shortcuts import render
 from django.core.serializers import serialize
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-#from .models import Tournament
-#from .serializers import TournamentSerializer
+from .models import Tournament
+from .serializers import TournamentSerializer
 
 @csrf_exempt
 def get_email(request):
@@ -70,13 +70,11 @@ def get_score(request):
 def ping(request):
     return JsonResponse({'message': 'Server is awake!'})
 
-"""
 @csrf_exempt
-def get_tournament_data(request):
+def tournaments(request):
     tournaments = Tournament.objects.all()
     serializer = TournamentSerializer(tournaments, many=True)
     return JsonResponse(serializer.data, safe=False)
-"""
 
 @csrf_exempt
 def leaderboard(request):
