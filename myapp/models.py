@@ -42,3 +42,6 @@ class MyAppUserPermissions(models.Model):
 class Tournament(models.Model):
     name = models.CharField(max_length=100)
     start_date = models.DateField()
+
+    class Meta:
+        db_table = 'tournaments' 
