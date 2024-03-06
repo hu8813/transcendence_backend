@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 
 class User(AbstractUser):
     score = models.IntegerField(default=0)
+    nickname = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         managed = False
