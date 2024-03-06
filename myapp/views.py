@@ -34,6 +34,21 @@ def get_nickname(request):
 
 @csrf_exempt 
 @api_view(['POST'])
+def update_nickname(request):
+    if request.method == 'POST':
+        new_nickname = request.data.get('nickname')  # Assuming the nickname is sent in the request data
+        user = request.user
+        if user.is_authenticated:
+            user.nickname = new_nickname
+            user.save()
+            return JsonResponse({"message": "Nickname updated successfully."})
+        else:
+            return JsonResponse({'error': 'User is not authenticated'}, status=401)
+    else:
+        return JsonResponse({"message": "Invalid request method."}, status=400)
+        
+@csrf_exempt 
+@api_view(['POST'])
 def upload_avatar(request):
     if request.method == 'POST' and request.FILES['avatar']:
         avatar_file = request.FILES['avatar']
