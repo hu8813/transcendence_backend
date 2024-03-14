@@ -86,6 +86,11 @@ def ping(request):
     return JsonResponse({'message': 'Server is awake!'})
 
 @csrf_exempt
+def get_games(request):
+    return JsonResponse({'message': 'Server is awake!'})
+
+
+@csrf_exempt
 def tournaments(request):
     tournaments = Tournament.objects.all()
     serializer = TournamentSerializer(tournaments, many=True)
