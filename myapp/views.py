@@ -13,11 +13,21 @@ from .models import Tournament
 from .serializers import TournamentSerializer
 from django.core.files.images import ImageFile
 from rest_framework.authtoken.models import Token
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
 import uuid
 import os
 from django.conf import settings
 import requests
 
+class ExampleView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        content = {'message': 'Hello, World!'}
+        return Response(content)
 
 @csrf_exempt
 @api_view(['POST'])

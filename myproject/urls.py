@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from myapp import views
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 #from socketio import views as socketio_views
 
 
@@ -31,7 +33,8 @@ urlpatterns = [
     path('get-csrf-token/', views.get_csrf_token, name='get_csrf_token'),
     path('api/fetch-messages/', views.fetch_messages, name='fetch_messages'),
     path('api/send-message/', views.send_message, name='send_message'),
-    path('api/token/', views.obtain_token, name='obtain_token'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('upload-avatar/', views.upload_avatar, name='upload_avatar'),
     path('get-email/', views.upload_avatar, name='get_email'),
     path('get-nickname/', views.get_nickname, name='get_nickname'),
