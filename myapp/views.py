@@ -50,7 +50,7 @@ def update_nickname(request):
     else:
         return JsonResponse({"message": "Invalid request method."}, status=400)
        
-
+@csrf_exempt
 @api_view(['POST'])
 def upload_avatar(request):
     if request.method == 'POST' and request.FILES.get('avatar'):
@@ -71,7 +71,7 @@ def upload_avatar(request):
         return Response({"message": "Avatar uploaded successfully."})
     else:
         return Response({"message": "No avatar file provided."}, status=status.HTTP_400_BAD_REQUEST)
-               
+
 @csrf_exempt
 def get_score(request):
     # Retrieve user info from the database
