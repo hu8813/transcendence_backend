@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Tournament
 from .serializers import TournamentSerializer
+from django.core.files.images import ImageFile
 
 @csrf_exempt
 def get_email(request):
@@ -47,14 +48,18 @@ def update_nickname(request):
     else:
         return JsonResponse({"message": "Invalid request method."}, status=400)
         
-@csrf_exempt 
 @api_view(['POST'])
 def upload_avatar(request):
-    if request.method == 'POST' and request.FILES['avatar']:
+    if request.method == 'POST' and request.FILES.get('avatar'):
         avatar_file = request.FILES['avatar']
-        user_profile = UserProfile.objects.get_or_create(user=request.user)  # Assuming you have a user associated with the profile
         
-        # Save the avatar file to a desired location
+        # Check if the uploaded file is an image file by the file extension
+        if not avatar_file.name.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
+            return Response({"message": "Only image files (PNG, JPG, JPEG, GIF) are allowed."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
+        
+        # Save the avatar file to the desired location
         user_profile.avatar = avatar_file
         user_profile.save()
 
