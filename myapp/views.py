@@ -12,6 +12,8 @@ from rest_framework.decorators import api_view
 from .models import Tournament
 from .serializers import TournamentSerializer
 from django.core.files.images import ImageFile
+import uuid
+
 
 @csrf_exempt
 def get_email(request):
@@ -47,7 +49,8 @@ def update_nickname(request):
             return JsonResponse({'error': 'User is not authenticated'}, status=401)
     else:
         return JsonResponse({"message": "Invalid request method."}, status=400)
-        
+       
+
 @api_view(['POST'])
 def upload_avatar(request):
     if request.method == 'POST' and request.FILES.get('avatar'):
@@ -59,14 +62,16 @@ def upload_avatar(request):
         
         user_profile, _ = UserProfile.objects.get_or_create(user=request.user)
         
-        # Save the avatar file to the desired location
-        user_profile.avatar = avatar_file
+        # Generate a unique filename using UUID
+        unique_filename = str(uuid.uuid4()) + avatar_file.name[avatar_file.name.rfind('.'):]
+        # Save the avatar file to the desired location with the unique filename
+        user_profile.avatar = unique_filename
         user_profile.save()
 
         return Response({"message": "Avatar uploaded successfully."})
     else:
         return Response({"message": "No avatar file provided."}, status=status.HTTP_400_BAD_REQUEST)
-
+               
 @csrf_exempt
 def get_score(request):
     # Retrieve user info from the database
