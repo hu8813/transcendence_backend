@@ -13,7 +13,8 @@ from .models import Tournament
 from .serializers import TournamentSerializer
 from django.core.files.images import ImageFile
 import uuid
-
+import os
+from django.conf import settings
 
 @csrf_exempt
 def get_email(request):
@@ -51,6 +52,7 @@ def update_nickname(request):
         return JsonResponse({"message": "Invalid request method."}, status=400)
        
 @csrf_exempt
+
 @api_view(['POST'])
 def upload_avatar(request):
     if request.method == 'POST' and request.FILES.get('avatar'):
@@ -65,12 +67,18 @@ def upload_avatar(request):
         # Generate a unique filename using UUID
         unique_filename = str(uuid.uuid4()) + avatar_file.name[avatar_file.name.rfind('.'):]
         # Save the avatar file to the desired location with the unique filename
+        file_path = os.path.join(settings.MEDIA_ROOT, unique_filename)
+        with open(file_path, 'wb') as f:
+            for chunk in avatar_file.chunks():
+                f.write(chunk)
+        # Save the file path to the user profile
         user_profile.avatar = unique_filename
         user_profile.save()
 
         return Response({"message": "Avatar uploaded successfully."})
     else:
         return Response({"message": "No avatar file provided."}, status=status.HTTP_400_BAD_REQUEST)
+
 
 @csrf_exempt
 def get_score(request):
