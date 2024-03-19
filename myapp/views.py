@@ -52,7 +52,6 @@ def update_nickname(request):
         return JsonResponse({"message": "Invalid request method."}, status=400)
        
 @csrf_exempt
-
 @api_view(['POST'])
 def upload_avatar(request):
     if request.method == 'POST' and request.FILES.get('avatar'):
