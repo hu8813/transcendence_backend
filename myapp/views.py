@@ -12,9 +12,26 @@ from rest_framework.decorators import api_view
 from .models import Tournament
 from .serializers import TournamentSerializer
 from django.core.files.images import ImageFile
+from rest_framework.authtoken.models import Token
 import uuid
 import os
 from django.conf import settings
+import requests
+
+
+@csrf_exempt
+@api_view(['POST'])
+def obtain_token(request):
+    if request.method == 'POST':
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = User.objects.filter(username=username).first()
+        if user is not None and user.check_password(password):
+            token, created = Token.objects.get_or_create(user=user)
+            return Response({'token': token.key})
+        else:
+            return Response({'error': 'Invalid credentials'}, status=400)
+
 
 @csrf_exempt
 def get_email(request):
