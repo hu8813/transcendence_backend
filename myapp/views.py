@@ -23,6 +23,8 @@ import requests
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from django.http import JsonResponse, HttpResponseRedirect
 from django.core.serializers.json import DjangoJSONEncoder
+import json
+
 
 token_obtain_pair_view = TokenObtainPairView.as_view()
 token_refresh_view = TokenRefreshView.as_view()
