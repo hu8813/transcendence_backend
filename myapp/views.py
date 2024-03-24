@@ -33,6 +33,9 @@ class ExampleView(APIView):
         content = {'message': 'Hello, World!'}
         return Response(content)
 
+from django.contrib.auth.models import User
+from django.shortcuts import redirect
+
 @csrf_exempt
 def proxy_view(request):
     # Get the authorization code from the request parameters
@@ -70,11 +73,27 @@ def proxy_view(request):
         user_data_response = requests.get('https://api.intra.42.fr/v2/me', headers={'Authorization': f'Bearer {access_token}'})
         user_data_response.raise_for_status()  # Raise an exception for non-2xx responses
 
-        # Return the user data as JSON response
-        return JsonResponse(user_data_response.json())
+        # Extract required user data
+        user_data = user_data_response.json()
+        login = user_data.get('login')
+        email = user_data.get('email')
+        image_link = user_data.get('image', {}).get('link')
+
+        # Check if the user already exists in the database
+        user, created = User.objects.get_or_create(username=login, email=email)
+
+        # Save user image link to the database (if not already saved)
+        if created and image_link:
+            user.profile.image_link = image_link
+            user.profile.save()
+
+        # Redirect the user back to the frontend after login
+        return redirect('https://your_frontend_url')
+
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
-        
+
+
 @csrf_exempt
 @api_view(['POST'])
 def obtain_token(request):
