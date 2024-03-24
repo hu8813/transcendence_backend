@@ -87,7 +87,6 @@ def proxy_view(request):
             user.profile.image_link = image_link
             user.profile.save()
         user_info = {
-            'id': user_data['id'],
             'email': user_data['email'],
             'login': user_data['login'],
             'image_url': user_data['image']['link']
