@@ -72,9 +72,9 @@ def proxy_view(request):
         # Check if the user already exists in the database
         user, created = User.objects.get_or_create(username=login, email=email)
 
-        # Update user fields
-        user.score = user_data.get('score', user.score)
-        user.nickname = user_data.get('nickname', user.nickname)
+        # Update user fields      
+        user.nickname = user_data.get('nickname', user.username)  # Set nickname to login name if not provided
+        user.score = 0
         user.save()
 
         # Return user information as JSON response
@@ -87,7 +87,7 @@ def proxy_view(request):
         return JsonResponse({'user': user_info})
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
-        
+
 @csrf_exempt
 @api_view(['POST'])
 def obtain_token(request):
