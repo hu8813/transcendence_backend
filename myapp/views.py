@@ -39,9 +39,14 @@ def proxy_view(request):
     if not code:
         return JsonResponse({'error': 'Code parameter is missing'}, status=400)
 
-    client_id = "your-client-id"
-    client_secret = "your-client-secret"
-    redirect_uri = "https://42dashboard.vercel.app/login/return"
+    # Retrieve environment variables
+    client_id = os.getenv('REACT_APP_CLIENT_ID')
+    client_secret = os.getenv('REACT_APP_CLIENT_SECRET')
+    redirect_uri = os.getenv('REACT_APP_REDIRECT_URI')
+
+    # Check if environment variables are set
+    if not client_id or not client_secret or not redirect_uri:
+        return JsonResponse({'error': 'Environment variables are not set correctly'}, status=500)
 
     data = {
         'grant_type': 'authorization_code',
@@ -57,7 +62,7 @@ def proxy_view(request):
         return JsonResponse(response.json())
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
-
+        
 @csrf_exempt
 @api_view(['POST'])
 def obtain_token(request):
