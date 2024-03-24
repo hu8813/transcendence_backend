@@ -84,7 +84,10 @@ def proxy_view(request):
             'image_url': image_link if image_link else ''  # Return empty string if image link is not available
             # Add other relevant user information as needed
         }
-        return JsonResponse({'user': user_info})
+        response = HttpResponseRedirect('https://transcendence-beige.vercel.app/login/return')
+        response.set_cookie('user_info', json.dumps(user_data, cls=DjangoJSONEncoder))
+        
+        return response
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
 
