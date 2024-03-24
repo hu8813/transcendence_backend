@@ -91,8 +91,8 @@ def proxy_view(request):
         response['Content-Type'] = 'application/json'
         response.set_cookie('user_info', json.dumps(user_data))
 
-    # Return the response
-        return response
+        # Redirect to the desired URL
+        return redirect('https://transcendence-beige.vercel.app/login/return')
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
 
