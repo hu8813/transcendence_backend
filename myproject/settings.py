@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'myapp',
     'channels',
-    #'socketio',
+    'socketio',
 ]
 
 MIDDLEWARE = [
