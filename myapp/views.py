@@ -27,6 +27,29 @@ token_refresh_view = TokenRefreshView.as_view()
 
 
 @csrf_exempt
+def proxy_userinfo(request):
+    # Get the code parameter from the request
+    code = request.GET.get('code')
+    
+    # Check if code parameter is provided
+    if not code:
+        return JsonResponse({'error': 'Code parameter is missing'}, status=400)
+    
+    # Query the database for a user with the given code
+    try:
+        user = User.objects.get(code=code)  # Assuming 'code' is a field in your User model
+        user_info = {
+            'email': user.email,
+            'login': user.username,
+            # Add other user information fields as needed
+        }
+        return JsonResponse({'user': user_info})
+    except User.DoesNotExist:
+        return JsonResponse({'error': 'User not found'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+@csrf_exempt
 def proxy_view(request):
     # Get the authorization code from the request parameters
     code = request.GET.get('code')
