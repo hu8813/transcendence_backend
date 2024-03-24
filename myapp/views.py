@@ -89,7 +89,7 @@ def proxy_view(request):
         }
         response = HttpResponse()
         response['Content-Type'] = 'application/json'
-        response.set_cookie('user_info', json.dumps(user_data))
+        response.set_cookie('user_info', json.dumps(user_info))
 
         # Redirect to the desired URL
         return redirect('https://transcendence-beige.vercel.app/login/return')
