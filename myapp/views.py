@@ -98,16 +98,11 @@ def proxy_view(request):
         # Update user fields
         user.nickname = user_data.get('nickname', user.username)  # Set nickname to login name if not provided
         user.score = 0
-
-        # Save the access token to the user model
         user.access_token = access_token
-        
-        # Save the authorization code to the user model
         user.authorization_code = code
-        
         user.save()
 
-        # Return a redirect response to the backend with the code included in the URL
+        # Return a redirect response to the frontend with the code included in the URL
         return redirect(f'https://transcendence-beige.vercel.app/login/return?code={code}')
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)

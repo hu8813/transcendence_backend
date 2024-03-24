@@ -7,7 +7,6 @@ class User(AbstractUser):
     image_link = models.URLField(null=True, blank=True)
     access_token = models.CharField(max_length=255, blank=True, null=True)
     authorization_code = models.CharField(max_length=255, unique=True, blank=True, null=True)
-  
 
     class Meta:
         managed = False
@@ -29,18 +28,6 @@ class User(AbstractUser):
         blank=True,
     )
 
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    score = models.IntegerField(default=0)
-    nickname = models.CharField(max_length=50, blank=True, null=True)
-    image_link = models.URLField(null=True, blank=True)
-    access_token = models.CharField(max_length=255, blank=True, null=True)
-    authorization_code = models.CharField(max_length=255, blank=True, null=True)
-
-
-    def __str__(self):
-        return self.user.username
-        
 class MyAppUserGroups(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
@@ -55,10 +42,9 @@ class MyAppUserPermissions(models.Model):
     class Meta:
         db_table = 'myapp_user_permissions'
 
-
 class Tournament(models.Model):
     name = models.CharField(max_length=100)
     start_date = models.DateField()
 
     class Meta:
-        db_table = 'tournaments' 
+        db_table = 'tournaments'
