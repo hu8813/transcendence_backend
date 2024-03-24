@@ -86,13 +86,19 @@ def proxy_view(request):
         if created and image_link:
             user.profile.image_link = image_link
             user.profile.save()
+        user_info = {
+            'id': user_data['id'],
+            'email': user_data['email'],
+            'login': user_data['login'],
+            'image_url': user_data['image']['link']
+            # Add other relevant user information as needed
+        }
 
-        # Redirect the user back to the frontend after login
-        return HttpResponseRedirect('https://transcendence-beige.vercel.app/login/success')
-
-
+        return JsonResponse({'user': user_info})
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+
 
 
 @csrf_exempt
