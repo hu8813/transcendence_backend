@@ -34,6 +34,31 @@ class ExampleView(APIView):
         return Response(content)
 
 @csrf_exempt
+def proxy_view(request):
+    code = request.GET.get('code')
+    if not code:
+        return JsonResponse({'error': 'Code parameter is missing'}, status=400)
+
+    client_id = "your-client-id"
+    client_secret = "your-client-secret"
+    redirect_uri = "https://42dashboard.vercel.app/login/return"
+
+    data = {
+        'grant_type': 'authorization_code',
+        'client_id': client_id,
+        'client_secret': client_secret,
+        'code': code,
+        'redirect_uri': redirect_uri,
+    }
+
+    try:
+        response = requests.post('https://api.intra.42.fr/oauth/token', data=data)
+        response.raise_for_status()  # Raise an exception for non-2xx responses
+        return JsonResponse(response.json())
+    except requests.RequestException as e:
+        return JsonResponse({'error': str(e)}, status=500)
+
+@csrf_exempt
 @api_view(['POST'])
 def obtain_token(request):
     if request.method == 'POST':
