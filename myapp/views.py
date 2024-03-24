@@ -88,7 +88,8 @@ def proxy_view(request):
             user.profile.save()
 
         # Redirect the user back to the frontend after login
-        return redirect('https://your_frontend_url')
+        return HttpResponseRedirect('https://transcendence-beige.vercel.app/login/success')
+
 
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
