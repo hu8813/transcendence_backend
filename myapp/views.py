@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
 from .forms import UserRegistrationForm
 from django.contrib.auth.models import User
-from django.shortcuts import render
 from django.core.serializers import serialize
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -21,9 +19,8 @@ import os
 from django.conf import settings
 import requests
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from django.http import JsonResponse, HttpResponseRedirect
-from django.core.serializers.json import DjangoJSONEncoder
 import json
+
 
 token_obtain_pair_view = TokenObtainPairView.as_view()
 token_refresh_view = TokenRefreshView.as_view()
