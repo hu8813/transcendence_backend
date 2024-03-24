@@ -26,7 +26,15 @@ class User(AbstractUser):
         blank=True,
     )
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    score = models.IntegerField(default=0)
+    nickname = models.CharField(max_length=50, blank=True, null=True)
+    image_link = models.URLField(null=True, blank=True)
 
+    def __str__(self):
+        return self.user.username
+        
 class MyAppUserGroups(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)

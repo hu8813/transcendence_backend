@@ -25,6 +25,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 token_obtain_pair_view = TokenObtainPairView.as_view()
 token_refresh_view = TokenRefreshView.as_view()
 
+
 @csrf_exempt
 def proxy_view(request):
     # Get the authorization code from the request parameters
@@ -80,14 +81,13 @@ def proxy_view(request):
         user_info = {
             'email': user.email,
             'login': user.username,
-            'image_url': user.image_link if user.image_link else ''  # Return empty string if image link is not available
+            'image_url': image_link if image_link else ''  # Return empty string if image link is not available
             # Add other relevant user information as needed
         }
         return JsonResponse({'user': user_info})
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
-
-
+        
 @csrf_exempt
 @api_view(['POST'])
 def obtain_token(request):
