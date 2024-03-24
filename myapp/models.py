@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 class User(AbstractUser):
     score = models.IntegerField(default=0)
     nickname = models.CharField(max_length=50, blank=True, null=True)
+    image_link = models.URLField(null=True, blank=True)
 
     class Meta:
         managed = False
@@ -24,6 +25,7 @@ class User(AbstractUser):
         related_query_name='custom_user_permission',
         blank=True,
     )
+
 
 class MyAppUserGroups(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

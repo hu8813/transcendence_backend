@@ -25,17 +25,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 token_obtain_pair_view = TokenObtainPairView.as_view()
 token_refresh_view = TokenRefreshView.as_view()
 
-class ExampleView(APIView):
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        content = {'message': 'Hello, World!'}
-        return Response(content)
-
-from django.contrib.auth.models import User
-from django.shortcuts import redirect
-
 @csrf_exempt
 def proxy_view(request):
     # Get the authorization code from the request parameters
@@ -82,22 +71,21 @@ def proxy_view(request):
         # Check if the user already exists in the database
         user, created = User.objects.get_or_create(username=login, email=email)
 
-        # Save user image link to the database (if not already saved)
-        if created and image_link:
-            user.profile.image_link = image_link
-            user.profile.save()
+        # Update user fields
+        user.score = user_data.get('score', user.score)
+        user.nickname = user_data.get('nickname', user.nickname)
+        user.save()
+
+        # Return user information as JSON response
         user_info = {
-            'email': user_data['email'],
-            'login': user_data['login'],
-            'image_url': user_data['image']['link']
+            'email': user.email,
+            'login': user.username,
+            'image_url': user.image_link if user.image_link else ''  # Return empty string if image link is not available
             # Add other relevant user information as needed
         }
-
         return JsonResponse({'user': user_info})
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
-
-
 
 
 @csrf_exempt
