@@ -9,8 +9,8 @@ class User(AbstractUser):
     authorization_code = models.CharField(max_length=255, unique=True, blank=True, null=True)
 
     class Meta:
-        managed = True
-        #db_table = 'auth_user'
+        managed = False
+        db_table = 'auth_user'
 
     # Specify custom intermediary table names to avoid clashes
     groups = models.ManyToManyField(
