@@ -73,7 +73,7 @@ def proxy_view(request):
         image_link = user_data.get('image', {}).get('link')
 
         # Check if the user already exists in the database
-        user, created = CustomUser.objects.get_or_create(username=login, email=email)
+        user, created = User.objects.get_or_create(username=login, email=email)
 
         # Update user fields
         user.nickname = user_data.get('nickname', user.username)  # Set nickname to login name if not provided
