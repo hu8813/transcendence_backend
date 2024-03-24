@@ -25,7 +25,6 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.core.serializers.json import DjangoJSONEncoder
 import json
 
-
 token_obtain_pair_view = TokenObtainPairView.as_view()
 token_refresh_view = TokenRefreshView.as_view()
 
@@ -88,9 +87,11 @@ def proxy_view(request):
             'image_url': image_link if image_link else ''  # Return empty string if image link is not available
             # Add other relevant user information as needed
         }
-        response = HttpResponseRedirect('https://transcendence-beige.vercel.app/login/return')
-        response.set_cookie('user_info', json.dumps(user_data, cls=DjangoJSONEncoder))
-        
+        response = HttpResponse()
+        response['Content-Type'] = 'application/json'
+        response.set_cookie('user_info', json.dumps(user_data))
+
+    # Return the response
         return response
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
