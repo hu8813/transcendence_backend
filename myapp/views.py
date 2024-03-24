@@ -35,6 +35,7 @@ class ExampleView(APIView):
 
 @csrf_exempt
 def proxy_view(request):
+    # Get the authorization code from the request parameters
     code = request.GET.get('code')
     if not code:
         return JsonResponse({'error': 'Code parameter is missing'}, status=400)
@@ -48,6 +49,7 @@ def proxy_view(request):
     if not client_id or not client_secret or not redirect_uri:
         return JsonResponse({'error': 'Environment variables are not set correctly'}, status=500)
 
+    # Prepare the data for token exchange
     data = {
         'grant_type': 'authorization_code',
         'client_id': client_id,
@@ -57,9 +59,19 @@ def proxy_view(request):
     }
 
     try:
+        # Exchange the authorization code for an access token
         response = requests.post('https://api.intra.42.fr/oauth/token', data=data)
         response.raise_for_status()  # Raise an exception for non-2xx responses
-        return JsonResponse(response.json())
+
+        # Extract the access token from the response
+        access_token = response.json().get('access_token')
+
+        # Make a request to get user data using the access token
+        user_data_response = requests.get('https://api.intra.42.fr/v2/me', headers={'Authorization': f'Bearer {access_token}'})
+        user_data_response.raise_for_status()  # Raise an exception for non-2xx responses
+
+        # Return the user data as JSON response
+        return JsonResponse(user_data_response.json())
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
         
