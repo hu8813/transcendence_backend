@@ -73,25 +73,21 @@ def proxy_view(request):
         image_link = user_data.get('image', {}).get('link')
 
         # Check if the user already exists in the database
-        user, created = User.objects.get_or_create(username=login, email=email)
+        user, created = CustomUser.objects.get_or_create(username=login, email=email)
 
-        # Update user fields      
+        # Update user fields
         user.nickname = user_data.get('nickname', user.username)  # Set nickname to login name if not provided
         user.score = 0
+
+        # Save the access token to the user model
+        user.access_token = access_token
+        
+        # Save the authorization code to the user model
+        user.authorization_code = code
+        
         user.save()
 
-        # Return user information as JSON response
-        user_info = {
-            'email': user.email,
-            'login': user.username,
-            'image_url': image_link if image_link else ''  # Return empty string if image link is not available
-            # Add other relevant user information as needed
-        }
-        response = HttpResponse()
-        response['Content-Type'] = 'application/json'
-        response.set_cookie('user_info', json.dumps(user_info))
-
-        # Redirect to the desired URL
+        # Return a redirect response to the backend with the code included in the URL
         return redirect(f'https://transcendence-beige.vercel.app/login/return?code={code}')
     except requests.RequestException as e:
         return JsonResponse({'error': str(e)}, status=500)
