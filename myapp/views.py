@@ -39,6 +39,9 @@ def proxy_userinfo(request):
         user_info = {
             'nickname': user.nickname,
             'login': user.username,
+            'image_link': user.image_link,
+            'score': user.score,
+            'email': user.email,
             # Add other user information fields as needed
         }
         return JsonResponse({'user': user_info})
