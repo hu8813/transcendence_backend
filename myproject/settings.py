@@ -20,6 +20,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
+    'pong42.azurewebsites.net',
     '127.0.0.1',
     'transcendence-beige.vercel.app',  # Add your domain name here
     'four2trans-backend.onrender.com',  # Add Render domain here
@@ -156,9 +157,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000','http://localhost','https://transcendence-beige.vercel.app','https://y494mt-3000.csb.app','https://transcendence-git-draft-exciting-yalow-hubble42.vercel.app/','https://mwlvdq-3000.csb.app','http://8ff524ec-5dfb-4374-9125-a53385e1cc63-00-14kx31mg03i0t.spock.replit.dev','http://transcendence-bynd-asb2ihs6--3000--6f234770.local-credentialless.webcontainer.io', 'http://transcendence-bynd--3000--6f234770.local-corp.webcontainer.io','https://api.intra.42.fr']
+CSRF_TRUSTED_ORIGINS = ['http://pong42.azurewebsites.net','https://pong42.azurewebsites.net','http://localhost:3000','http://localhost','https://transcendence-beige.vercel.app','https://y494mt-3000.csb.app','https://transcendence-git-draft-exciting-yalow-hubble42.vercel.app/','https://mwlvdq-3000.csb.app','http://8ff524ec-5dfb-4374-9125-a53385e1cc63-00-14kx31mg03i0t.spock.replit.dev','http://transcendence-bynd-asb2ihs6--3000--6f234770.local-credentialless.webcontainer.io', 'http://transcendence-bynd--3000--6f234770.local-corp.webcontainer.io','https://api.intra.42.fr']
 
-CORS_ALLOWED_ORIGINS = ['http://localhost:3000','http://localhost','https://transcendence-beige.vercel.app','https://y494mt-3000.csb.app','https://mwlvdq-3000.csb.app','http://8ff524ec-5dfb-4374-9125-a53385e1cc63-00-14kx31mg03i0t.spock.replit.dev','http://transcendence-bynd-asb2ihs6--3000--6f234770.local-credentialless.webcontainer.io', 'http://transcendence-bynd--3000--6f234770.local-corp.webcontainer.io','https://api.intra.42.fr']
+CORS_ALLOWED_ORIGINS = ['https://pong42.azurewebsites.net','http://pong42.azurewebsites.net','http://localhost:3000','http://localhost','https://transcendence-beige.vercel.app','https://y494mt-3000.csb.app','https://mwlvdq-3000.csb.app','http://8ff524ec-5dfb-4374-9125-a53385e1cc63-00-14kx31mg03i0t.spock.replit.dev','http://transcendence-bynd-asb2ihs6--3000--6f234770.local-credentialless.webcontainer.io', 'http://transcendence-bynd--3000--6f234770.local-corp.webcontainer.io','https://api.intra.42.fr']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
