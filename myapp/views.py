@@ -91,7 +91,9 @@ def proxy_view(request):
         user_data = user_data_response.json()
         login = user_data.get('login')
         email = user_data.get('email')
-        image_link = user_data.get('image', {}).get('link')
+        image_data = user_data.get('image', {})
+        image_link = image_data.get('versions', {}).get('medium', image_data.get('link'))
+
 
         # Check if the user already exists in the database
         user, created = User.objects.get_or_create(username=login, email=email)
