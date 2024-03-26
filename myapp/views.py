@@ -222,8 +222,8 @@ def tournaments(request):
 
 @csrf_exempt
 def leaderboard(request):
-    leaderboard_users = User.objects.order_by('-date_joined')[:10]  # Order by date joined
-    leaderboard_data = [{'username': user.username, 'date_joined': user.date_joined, 'image_link': user.image_link} for user in leaderboard_users]
+    leaderboard_users = User.objects.order_by('-score')[:100]  # Order by date joined
+    leaderboard_data = [{'username': user.username, 'date_joined': user.date_joined, 'image_link': user.image_link, 'score': user.score} for user in leaderboard_users]
     return JsonResponse(leaderboard_data, safe=False)
 
 @csrf_exempt
