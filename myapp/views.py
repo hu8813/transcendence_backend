@@ -37,7 +37,7 @@ def proxy_userinfo(request):
     try:
         user = User.objects.get(authorization_code=code)  # Assuming 'code' is a field in your User model
         user_info = {
-            'email': user.email,
+            'nickname': user.nickname,
             'login': user.username,
             # Add other user information fields as needed
         }
