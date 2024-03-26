@@ -2,13 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
-from .forms import UserRegistrationForm
-from django.contrib.auth.models import User
 from django.core.serializers import serialize
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Tournament
-from .serializers import TournamentSerializer
 from django.core.files.images import ImageFile
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
@@ -20,7 +16,9 @@ from django.conf import settings
 import requests
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 import json
-
+from .forms import UserRegistrationForm
+from .models import Tournament, User  # Change import here
+from .serializers import TournamentSerializer
 
 token_obtain_pair_view = TokenObtainPairView.as_view()
 token_refresh_view = TokenRefreshView.as_view()
