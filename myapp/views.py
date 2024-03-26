@@ -96,6 +96,7 @@ def proxy_view(request):
         # Update user fields
         user.nickname = user_data.get('nickname', user.username)  # Set nickname to login name if not provided
         user.score = 0
+        user.image = image_link
         user.access_token = access_token
         user.authorization_code = code
         user.save()
