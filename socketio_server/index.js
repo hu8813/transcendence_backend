@@ -15,7 +15,6 @@ io.on('connection', (socket) => {
 
   socket.on('message', (message) => {
     console.log('Message received:', message);
-    // Echo the message back to all connected clients
     io.emit('message', message);
   });
 });
