@@ -6,17 +6,19 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set the working directory in the container
-WORKDIR ./
+WORKDIR /app
+
+# Copy requirements.txt to the working directory
+COPY requirements.txt .
 
 # Install dependencies
-COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Django project into the container
-COPY . ./
+COPY . .
 
 # Expose the port on which Django runs
 EXPOSE 8000
 
 # Command to run the Django server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
